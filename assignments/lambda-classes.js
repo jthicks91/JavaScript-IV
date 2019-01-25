@@ -93,6 +93,7 @@ class Student extends Person {
     this.favSubjects = attributes.favSubjects;
   }
   listsSubjects() {
+    this.favSubjects.forEach(e => console.log(e));
     return this.favSubjects;
   }
   PRAssignment(subject) {
