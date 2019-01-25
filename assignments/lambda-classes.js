@@ -7,6 +7,7 @@ Person receives name age location gender all as props
 Person receives speak as a method.
 This method logs out a phrase Hello my name is Fred, I am from Bedrock where name and location are the object's own props */
 
+//Base-Class below //
 class Person {
   constructor(attributes) {
     this.age = attributes.age;
@@ -19,27 +20,26 @@ class Person {
   }
 }
 
-// testing Person class
-// const testPerson = new Person({
-//   age: "26",
-//   name: "Jordan",
-//   location: "Palmdale",
-//   gender: "Male"
-// });
-// console.log(testPerson.speak());
+// testing Person Base-class//
+const jt = new Person({
+  age: "26",
+  name: "jt",
+  location: "Palmdale",
+  gender: "Male"
+});
+// console.log(jt.speak());
+// console.log(jt.age);
 
-/* Instructor 
+const dj = new Person({
+  age: "25",
+  name: "dj",
+  location: "Wyoming",
+  gender: "Male"
+});
+// console.log(dj.speak());
+// console.log(dj.age);
 
-Now that we have a Person as our base class, we'll build our Instructor class.
-Instructor uses the same attributes that have been set up by Person
-Instructor has the following unique props:
-specialty what the Instructor is good at i.e. 'redux'
-favLanguage i.e. 'JavaScript, Python, Elm etc.'
-catchPhrase i.e. Don't forget the homies
-Instructor has the following methods:
-demo receives a subject string as an argument and logs out the phrase 'Today we are learning about {subject}' where subject is the param passed in.
-grade receives a student object and a subject string as arguments and logs out '{student.name} receives a perfect score on {subject}' */
-
+/* Instructors */
 class Instructor extends Person {
   constructor(attributes) {
     super(attributes);
@@ -47,22 +47,133 @@ class Instructor extends Person {
     this.favLanguage = attributes.favLanguage;
     this.catchPhrase = attributes.catchPhrase;
   }
-  demo() {
-    return `Today we are learning about {subject}`;
+  demo(subject) {
+    return `Today we are learning about ${subject}`;
   }
-  grade() {
-    return `${student.name} receives a perfect scrore on {subject}`;
+  grade(student, subject) {
+    return `${student.name} receives a perfect scrore on ${subject}`;
   }
 }
 
-// testing Instructor class
-const testInstructor = new Instructor({
+//--- Testing Instructor class--- //
+const Ryan = new Instructor({
+  age: "35",
+  name: "Ryan",
+  location: "California",
+  gender: "Male",
+  favLanguage: "CSS",
+  specialty: "Back-End",
+  catchPhrase: `Try your best`
+});
+
+const Josh = new Instructor({
+  age: "31",
+  name: "Josh",
+  location: "New Mexico",
+  gender: "Male",
+  favLanguage: "JS",
+  specialty: "React.js",
+  catchPhrase: `Don't Repeat Yourself`
+});
+
+// console.log(Ryan.specialty);
+// console.log(Ryan.catchPhrase);
+// console.log(Ryan.favLanguage);
+
+// console.log(Josh.specialty);
+// console.log(Josh.catchPhrase);
+// console.log(Josh.favLanguage);
+
+///----Students---- ///
+class Student extends Person {
+  constructor(attributes) {
+    super(attributes);
+    this.previousBackground = attributes.previousBackground;
+    this.className = attributes.className;
+    this.favSubjects = attributes.favSubjects;
+  }
+  listsSubjects() {
+    return this.favSubjects;
+  }
+  PRAssignment(subject) {
+    return `${this.name} has submitted a PR for ${subject}`;
+  }
+  sprintChallenge(subject) {
+    return `${this.name} has begun sprint challenge on ${subject}`;
+  }
+}
+
+//----Testing Student Objects---//
+const Jordan = new Student({
   age: "26",
   name: "Jordan",
   location: "Palmdale",
   gender: "Male",
-  favLanguage: "JavaScript",
-  specialty: "Front-end",
-  catchPhrase: `Don't forget the homies`
+  previousBackground: "Operations",
+  className: "WEBPT4",
+  favSubjects: "JS"
 });
-console.log(testInstructor.demo("JavaScript"));
+
+const Jonathan = new Student({
+  age: "26",
+  name: "Jonathan",
+  location: "New York",
+  gender: "Male",
+  previousBackground: "Accounting",
+  className: "WEBPT4",
+  favSubjects: "JS"
+});
+
+// console.log(Jordan.previousBackground);
+// console.log(Jordan.className);
+// console.log(Jordan.favSubjects);
+// console.log(Jonathan.previousBackground);
+// console.log(Jonathan.className);
+// console.log(Jonathan.favSubjects);
+
+//---- Project Managers----//
+
+class ProjectManager extends Instructor {
+  constructor(attributes) {
+    super(attributes);
+    this.gradClassName = attributes.gradClassName;
+    this.favInstructor = attributes.favInstructor;
+  }
+  standUp(slackChannel) {
+    return `${this.name} announces to ${slackChannel}, @channel standy times!`;
+  }
+  debugsCode(student, object) {
+    `${this.name} debugs ${student.name}'s code on ${subject} `;
+  }
+}
+
+//Testing Project Manager Objects//
+
+const Gannon = new ProjectManager({
+  age: "29",
+  name: "Gannon",
+  location: "Detroit",
+  gender: "Male",
+  favLanguage: "JavaScript",
+  specialty: "React.js",
+  catchPhrase: `How are we doing gents?`,
+  gradClassName: "CS14",
+  favInstructor: "Josh Knell"
+});
+
+const Carlos = new ProjectManager({
+  age: "26",
+  name: "Carlos",
+  location: "North Carolina",
+  gender: "Male",
+  favLanguage: "JavaScript",
+  specialty: "React.js",
+  catchPhrase: `Let's Go!`,
+  gradClassName: "CS12",
+  favInstructor: "Ryan Hamblin"
+});
+
+// console.log(Gannon.favInstructor);
+// console.log(Gannon.gradClassName);
+// console.log(Carlos.favInstructor);
+// console.log(Carlos.gradClassName);
